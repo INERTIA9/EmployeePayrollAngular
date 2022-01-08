@@ -1,0 +1,96 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="margin-top: 35px;margin-left: 100px;">
+    <img src="../../../assets/addemployeeimages/person_add_alt_1_black_24dp.svg" width="30px" height="27px"
+        style="border:1px solid #42515F;padding: 6px;opacity: 1;" alt="">
+    <div fxLayout="column" fxLayoutAlign="start start">
+        <span style="color: #82A70C;font: normal normal bold 22px/25px Montserrat;">Employee</span>
+        <span style="color: #42515F;font: normal normal bold 22px/25px Montserrat;">payroll</span>
+    </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center" style="background:#f7f7f7 0% 0% no-repeat padding-box;;">
+    <mat-card class="mat-card">
+
+        <div fxLayout="column" fxLayoutAlign="center none" style="margin-left: 100px;" fxLayoutGap="50px">
+            <h1 class="h1">
+                Employee Payroll form
+            </h1>
+
+            <form [formGroup]="employeeForm">
+                <div fxLayout="column" fxLayoutAlign="center none" fxLayoutGap="30px">
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+                        <span class="formfiledTitle">Name</span>
+                        <mat-form-field appearance="outline">
+                            <input matInput formControlName="fullName">
+                            <mat-error style="color: red;">
+                                Full Name is required</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="53px">
+                        <span class="formfiledTitle">Profile</span>
+                        <mat-radio-group aria-label="Select an option" formControlName="profilePic">
+                            <mat-radio-button value="1"></mat-radio-button>
+                            <img src="../../../assets/addemployeeimages/img_avatar_male.png" class="avatar" id="1">
+                            <mat-radio-button value="2"></mat-radio-button>
+                            <img src="../../../assets/addemployeeimages/img_avatar_female.png" class="avatar" id="2">
+                            <mat-radio-button value="3"></mat-radio-button>
+                            <img src="../../../assets/addemployeeimages/avatar3.png" class="avatar" id="3">
+                            <mat-radio-button value="4"></mat-radio-button>
+                            <img src="../../../assets/addemployeeimages/avatar4.png" class="avatar " id="4">
+                        </mat-radio-group>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="48px">
+                        <span class="formfiledTitle">Gender</span>
+                        <mat-radio-group aria-label="Select an option" formControlName="gender">
+                            <mat-radio-button value="Male">Male</mat-radio-button>
+                            <mat-radio-button value="Female">Female</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+                        <span class="formfiledTitle">Department</span>
+                        <section class="example-section" *ngFor="let dept of Department;let i=index">
+                            <label>
+                                <input type="checkbox" 
+                                    class="example-margin" [value]="dept.value" (change)="onChange($event)">
+                                {{dept.name}} </label>
+                        </section>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+                        <span class="formfiledTitle">Salary</span>
+                        <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" step="1000" min="0"
+                            max="100000" aria-label="units " formControlName="salary"></mat-slider>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                        <span class="formfiledTitle">StartDate</span>
+                        <mat-form-field class="example-full-width" appearance="outline" style="width: 200px;">
+                            <input matInput [matDatepicker]="picker" formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker">
+                                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px">
+                        <span class="formfiledTitle">Notes</span>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <input matInput formControlName="note" style="height: 60px;">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <button class="bottombuttons">Cancel</button>
+                    <span class="example-spacer"></span>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+                        <button (click)="onSubmit()" class="bottombuttons">Submit</button>
+                        <button class="bottombuttons">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>
